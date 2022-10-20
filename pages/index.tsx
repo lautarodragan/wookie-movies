@@ -22,7 +22,7 @@ const Home: NextPage = () => {
   }, [movies])
 
   return (
-    <div className={styles.container}>
+    <div>
       <Header onSearch={searchQuery => setSearch(searchQuery)} />
 
       <main className={styles.main}>
