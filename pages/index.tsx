@@ -27,14 +27,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <header className={styles.header}>
         <h1 className={styles.title}>
-          Welcome to the Wookie Movies internet theater!
+          Wookie <br/>
+          Movies
         </h1>
 
-        <p className={styles.description}>
-          Watch the best of Earth's movies from the comfort of your home
+        <p className={styles.search}>
+          <input type="text" placeholder="Search movies..." />
         </p>
+      </header>
+
+      <main className={styles.main}>
 
         <div className={styles.grid}>
 
