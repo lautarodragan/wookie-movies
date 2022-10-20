@@ -20,8 +20,10 @@ export const Header = ({ onSearch }: HeaderProps) => {
       <DocumentHead />
       <StyledHeader>
         <h1>
-          Wookie <br/>
-          Movies
+          <a href="/">
+            Wookie <br/>
+            Movies
+          </a>
         </h1>
 
         <p>
