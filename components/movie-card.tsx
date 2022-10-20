@@ -9,7 +9,7 @@ type MovieCardProps = Readonly<{
 }>
 
 export const MovieCard = ({ movie }: MovieCardProps) => (
-  <Link href={`/movies/${movie.slug}`}>
+  <Link href={`/movies/${movie.slug}`} passHref={true}>
     <MovieCardStyled>
       <MovieCardBackground style={{ backgroundImage: `url(${movie.backdrop})` }} />
       <h2>{movie.title}</h2>
@@ -37,7 +37,6 @@ const MovieCardStyled = styled.a`
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   overflow: hidden;
-  cursor: pointer;
 
   &:hover,
   &:focus,
