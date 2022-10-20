@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
-import styled from 'styled-components'
 
 import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 import { groupMoviesByGenre } from '../src/group-movies-by-genre'
@@ -25,25 +24,11 @@ const Home: NextPage = () => {
   return (
     <div>
       <Header/>
-
-      <Main>
-        { !searchQuery && <MoviesByGenre moviesByGenre={moviesByGenre} />}
-        { searchQuery && <SearchResults movies={movies} /> }
-      </Main>
-
+      { !searchQuery && <MoviesByGenre moviesByGenre={moviesByGenre} />}
+      { searchQuery && <SearchResults movies={movies} /> }
       <Footer/>
     </div>
   )
 }
-
-const Main = styled.main`
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
 
 export default Home

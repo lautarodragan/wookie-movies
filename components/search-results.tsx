@@ -8,11 +8,13 @@ interface SearchResultsProps {
 }
 
 export const SearchResults = ({ movies }: SearchResultsProps) => (
-  <Grid>
-    {movies.map(movie => (
-      <MovieCard movie={movie} key={movie.id} />
-    ))}
-  </Grid>
+  <SearchResultsStyled>
+    <Grid>
+      {movies.map(movie => (
+        <MovieCard movie={movie} key={movie.id} />
+      ))}
+    </Grid>
+  </SearchResultsStyled>
 )
 
 const Grid = styled.div`
@@ -25,4 +27,14 @@ const Grid = styled.div`
     width: 100%;
     flex-direction: column;
   }
+`
+
+const SearchResultsStyled = styled.main`
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `

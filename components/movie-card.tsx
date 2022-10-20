@@ -37,6 +37,8 @@ const MovieCardStyled = styled.a`
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   overflow: hidden;
+  flex-shrink: 0;
+  flex-grow: 0;
 
   &:hover,
   &:focus,
