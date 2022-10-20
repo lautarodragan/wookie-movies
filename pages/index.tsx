@@ -5,11 +5,11 @@ import { useEffect, useMemo, useState } from 'react'
 
 import styles from '../styles/Home.module.css'
 
-import { WookieMoviesApiClient } from '../src/wookie-movies-api-client'
+import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 
 const Home: NextPage = () => {
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState<readonly Movie[]>([])
 
   useEffect(() => {
     wookieMoviesApiClient.getMovies().then(_ => _.json()).then(responseBody => setMovies(responseBody.movies))
@@ -37,33 +37,14 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          {movies.map(movie => (
+            <a key={movie.id} href={`/movies/${movie.slug}`} className={styles.card}>
+              <h2>{movie.title}</h2>
+              <p>{movie.overview}</p>
+            </a>
+          ))}
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
         </div>
       </main>
 
