@@ -79,30 +79,37 @@
   width: 370px;
   height: 270px;
   margin: 1rem;
-  padding: 1.5rem;
+  padding: 0;
   text-align: left;
-  color: inherit;
+  color: white;
+  text-shadow: 0 0 10px black;
   text-decoration: none;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  text-overflow: ellipsis;
+  transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   overflow: hidden;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  box-shadow: 0 0 2px 2px #000000aa, 0 0 2px 1px #000000aa inset;
+}
+
+.card:hover h2,
+.card:focus h2,
+.card:active h2{
+  text-decoration: underline;
 }
 
 .card h2 {
-  margin: 0 0 1rem 0;
+  margin: 0;
   font-size: 1.5rem;
+  padding: 1.5rem;
+  backdrop-filter: saturate(0.5) brightness(0.5);
 }
 
 .card p {
-  margin: 0;
+  margin: 1.5rem;
   font-size: 1.25rem;
   line-height: 1.5;
   overflow: hidden;
