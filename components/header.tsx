@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { DocumentHead } from './document-head'
@@ -8,6 +8,22 @@ import { DocumentHead } from './document-head'
 export const Header = () => {
   const router = useRouter()
   const [search, setSearch] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    const eventListener = (event: KeyboardEvent) => {
+      if (event.key === 'f' && event.ctrlKey) {
+        event.preventDefault()
+        inputRef.current?.focus()
+      } else if (event.key === 'Escape') {
+        inputRef.current?.blur()
+      }
+    }
+
+    document.addEventListener('keydown', eventListener)
+
+    return () => document.removeEventListener('keydown', eventListener)
+  }, [])
 
   const onKeyDown = (key: string) => {
     if (key === 'Enter') {
@@ -30,6 +46,7 @@ export const Header = () => {
 
         <p>
           <input
+            ref={inputRef}
             type="text"
             placeholder="Search movies..."
             value={search}
