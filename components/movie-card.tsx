@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import styled from 'styled-components'
 
 import { Movie } from '../src/wookie-movies-api-client'
@@ -7,18 +9,17 @@ type MovieCardProps = Readonly<{
 }>
 
 export const MovieCard = ({ movie }: MovieCardProps) => (
-  <MovieCardStyled
-    key={movie.id}
-    href={`/movies/${movie.slug}`}
-  >
-    <MovieCardBackground style={{ backgroundImage: `url(${movie.backdrop})` }} />
-    <h2>{movie.title}</h2>
-    <MovieCardInfo>
-      <span>⭐ {movie.imdb_rating}</span>
-      <span>{movie.length}</span>
-    </MovieCardInfo>
-    <p>{movie.overview}</p>
-  </MovieCardStyled>
+  <Link href={`/movies/${movie.slug}`}>
+    <MovieCardStyled>
+      <MovieCardBackground style={{ backgroundImage: `url(${movie.backdrop})` }} />
+      <h2>{movie.title}</h2>
+      <MovieCardInfo>
+        <span>⭐ {movie.imdb_rating}</span>
+        <span>{movie.length}</span>
+      </MovieCardInfo>
+      <p>{movie.overview}</p>
+    </MovieCardStyled>
+  </Link>
 )
 
 const MovieCardStyled = styled.a`
@@ -36,6 +37,7 @@ const MovieCardStyled = styled.a`
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   overflow: hidden;
+  cursor: pointer;
 
   &:hover,
   &:focus,

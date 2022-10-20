@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -20,10 +21,12 @@ export const Header = ({ onSearch }: HeaderProps) => {
       <DocumentHead />
       <StyledHeader>
         <h1>
-          <a href="/">
-            Wookie <br/>
-            Movies
-          </a>
+          <Link href="/">
+            <a>
+              Wookie <br/>
+              Movies
+            </a>
+          </Link>
         </h1>
 
         <p>

@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       <Main>
         <Grid>
           {movies.map(movie => (
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} key={movie.id} />
           ))}
         </Grid>
       </Main>
