@@ -29,6 +29,7 @@ const Movie = () => {
           <StyledDetails>
             <h1>{movie?.title} ({movie?.imdb_rating})</h1>
             <p>{movie && (new Date(movie.released_on)).getFullYear()} | {movie?.length} | {movie?.director}</p>
+            <p>{movie?.genres.join(', ')}</p>
             <p>Cast: {movie?.cast.join(', ')}</p>
             <p>{movie?.overview}</p>
           </StyledDetails>
