@@ -7,9 +7,9 @@ import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 import { groupMoviesByGenre } from '../src/group-movies-by-genre'
 
 import { Header } from '../components/header'
-import { MovieCard } from '../components/movie-card'
 import { Footer } from '../components/footer'
 import { MoviesByGenre } from '../components/movies-by-genre'
+import { SearchResults } from '../components/search-results'
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -28,13 +28,7 @@ const Home: NextPage = () => {
 
       <Main>
         { !searchQuery && <MoviesByGenre moviesByGenre={moviesByGenre} />}
-        { searchQuery && (
-          <Grid>
-            {movies.map(movie => (
-              <MovieCard movie={movie} key={movie.id} />
-            ))}
-          </Grid>
-        )}
+        { searchQuery && <SearchResults movies={movies} /> }
       </Main>
 
       <Footer/>
@@ -50,18 +44,6 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
-const Grid = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  @media (max-width: 600px) {
-    width: 100%;
-    flex-direction: column;
-  }
 `
 
 export default Home
