@@ -16,7 +16,7 @@ You are the owner of a movie theater in **Thikkiiana City,** on the Wookiee home
 -   For authentication pass the `"Authorization: Bearer Wookie2021"` header
 -   Parse the API response and display the results as outlined in the design. **Make sure to group movies by categories**.
 -   Implement a detail view for the movies in the list
--   Make sure that inking to detail pages as well as bookmarking works as expected
+-   Make sure that linking to detail pages as well as bookmarking works as expected
 -   Implement search by connecting to `https://wookie.codesubmit.io/movies?q=<search_term>`
 
 ### Deliverables
