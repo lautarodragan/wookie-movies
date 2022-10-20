@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import styled from 'styled-components'
 
-import styles from '../styles/Home.module.css'
-import Head from 'next/head'
+import { DocumentHead } from './document-head'
 
 type HeaderProps = Readonly<{
   onSearch: (searchQuery: string) => void
@@ -16,26 +16,49 @@ export const Header = ({ onSearch }: HeaderProps) => {
   }
 
   return (
-    <header className={styles.header}>
-      <Head>
-        <title>Wookie Movies</title>
-        <meta name="description" content="From Earth to Thikkiiana" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <DocumentHead />
+      <StyledHeader>
+        <h1>
+          Wookie <br/>
+          Movies
+        </h1>
 
-      <h1 className={styles.title}>
-        Wookie <br/>
-        Movies
-      </h1>
-
-      <p className={styles.search}>
-        <input
-          type="text"
-          placeholder="Search movies..."
-          value={search}
-          onChange={e => onSearchInputChange(e.target.value)}
-        />
-      </p>
-    </header>
+        <p>
+          <input
+            type="text"
+            placeholder="Search movies..."
+            value={search}
+            onChange={e => onSearchInputChange(e.target.value)}
+          />
+        </p>
+      </StyledHeader>
+    </>
   )
 }
+
+const StyledHeader = styled.header`
+  position: sticky;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 1rem;
+  background: white;
+  border-bottom: 3px solid black;
+  
+  h1 {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  p {
+    margin: 0 0 0 auto;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    align-self: flex-end;
+  }
+`
