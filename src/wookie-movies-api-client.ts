@@ -5,7 +5,7 @@ const createApiUrl = (searchQuery = '') =>
     ? apiUrl
     : `${apiUrl}?q=${searchQuery}`
 
-export const WookieMoviesApiClient = ({ authorization = 'Bearer Wookie2021' }) => {
+export const WookieMoviesApiClient = ({ authorization = 'Bearer Wookie2021' } = {}) => {
   const getMovies = (searchQuery = '') =>
     fetch(createApiUrl(searchQuery), {
       headers: { authorization },
