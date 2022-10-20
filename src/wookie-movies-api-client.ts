@@ -23,7 +23,7 @@ export const WookieMoviesApiClient = ({ authorization = 'Bearer Wookie2021' } = 
   }
 }
 
-export type Movie = Readonly<{
+export interface Movie extends Readonly<{
   backdrop: string
   cast: readonly string[]
   classification: string
@@ -37,7 +37,7 @@ export type Movie = Readonly<{
   released_on: string
   slug: string
   title: string
-}>
+}> {}
 
 export type MoviesResposne = Readonly<{
   movies: readonly Movie[]

@@ -11,5 +11,5 @@ export const groupMoviesByGenre = (movies: readonly Movie[]) => {
     }
   }
 
-  return moviesByGenre
+  return [...moviesByGenre.entries()]
 }
