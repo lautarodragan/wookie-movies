@@ -10,10 +10,11 @@ import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 const Home: NextPage = () => {
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
   const [movies, setMovies] = useState<readonly Movie[]>([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    wookieMoviesApiClient.getMovies().then(_ => _.json()).then(responseBody => setMovies(responseBody.movies))
-  }, [])
+    wookieMoviesApiClient.getMovies(search).then(_ => _.json()).then(responseBody => setMovies(responseBody.movies))
+  }, [search])
 
   useEffect(() => {
     console.log('movies changed', movies)
@@ -34,7 +35,12 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.search}>
-          <input type="text" placeholder="Search movies..." />
+          <input
+            type="text"
+            placeholder="Search movies..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
         </p>
       </header>
 
