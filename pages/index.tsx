@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useMemo, useState } from 'react'
-
-import styles from '../styles/Home.module.css'
+import styled from 'styled-components'
 
 import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 import { Header } from '../components/header'
@@ -25,17 +24,39 @@ const Home: NextPage = () => {
     <div>
       <Header onSearch={searchQuery => setSearch(searchQuery)} />
 
-      <main className={styles.main}>
-        <div className={styles.grid}>
+      <Main>
+        <Grid>
           {movies.map(movie => (
             <MovieCard movie={movie} />
           ))}
-        </div>
-      </main>
+        </Grid>
+      </Main>
 
       <Footer/>
     </div>
   )
 }
+
+const Main = styled.main`
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const Grid = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    flex-direction: column;
+  }
+`
 
 export default Home
