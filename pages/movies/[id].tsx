@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Movie, WookieMoviesApiClient } from '../../src/wookie-movies-api-client'
 import { Header } from '../../components/header'
 
-const Post = () => {
+const Movie = () => {
   const router = useRouter()
   const { id } = router.query
 
@@ -40,4 +40,4 @@ const Post = () => {
   )
 }
 
-export default Post
+export default Movie
