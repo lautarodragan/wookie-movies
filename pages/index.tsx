@@ -39,7 +39,12 @@ const Home: NextPage = () => {
         <div className={styles.grid}>
 
           {movies.map(movie => (
-            <a key={movie.id} href={`/movies/${movie.slug}`} className={styles.card}>
+            <a
+              key={movie.id}
+              href={`/movies/${movie.slug}`}
+              className={styles.card}
+            >
+              <div className={styles.cardBackground} style={{ backgroundImage: `url(${movie.backdrop})` }}></div>
               <h2>{movie.title}</h2>
               <p>{movie.overview}</p>
             </a>

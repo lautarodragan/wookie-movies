@@ -70,19 +70,23 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 370px;
+  height: 270px;
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
-  border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .card:hover,
@@ -101,6 +105,19 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardBackground {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  filter: blur(3px);
+  background-size: cover;
 }
 
 .logo {
