@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
+import { Header } from '../components/header'
 
 const Home: NextPage = () => {
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
@@ -22,27 +23,8 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Wookie Movies</title>
-        <meta name="description" content="From Earth to Thikkiiana" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <header className={styles.header}>
-        <h1 className={styles.title}>
-          Wookie <br/>
-          Movies
-        </h1>
-
-        <p className={styles.search}>
-          <input
-            type="text"
-            placeholder="Search movies..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-        </p>
-      </header>
+      <Header onSearch={searchQuery => setSearch(searchQuery)} />
 
       <main className={styles.main}>
 
