@@ -50,6 +50,10 @@ const Home: NextPage = () => {
             >
               <div className={styles.cardBackground} style={{ backgroundImage: `url(${movie.backdrop})` }}></div>
               <h2>{movie.title}</h2>
+              <div className={styles.cardInfo}>
+                <span>⭐ {movie.imdb_rating}</span>
+                <span>{movie.length}</span>
+              </div>
               <p>{movie.overview}</p>
             </a>
           ))}

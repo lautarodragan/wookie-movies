@@ -107,7 +107,7 @@
 }
 
 .card p {
-  margin: 1.5rem;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;;
   font-size: 1.25rem;
   line-height: 1.5;
   overflow: hidden;
@@ -123,6 +123,14 @@
   left: 0;
   filter: blur(3px);
   background-size: cover;
+}
+
+.cardInfo {
+  margin: 1.5rem 1.5rem 0 1.5rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
