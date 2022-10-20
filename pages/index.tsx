@@ -3,6 +3,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import { WookieMoviesApiClient } from '../src/wookie-movies-api-client'
+
+const wookieMoviesApiClient = WookieMoviesApiClient()
+
+wookieMoviesApiClient.getMovies().then(_ => _.json()).then(console.log)
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
