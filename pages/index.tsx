@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -7,6 +6,7 @@ import styles from '../styles/Home.module.css'
 
 import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 import { Header } from '../components/header'
+import { MovieCard } from '../components/movie-card'
 
 const Home: NextPage = () => {
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
@@ -23,29 +23,13 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-
       <Header onSearch={searchQuery => setSearch(searchQuery)} />
 
       <main className={styles.main}>
-
         <div className={styles.grid}>
-
           {movies.map(movie => (
-            <a
-              key={movie.id}
-              href={`/movies/${movie.slug}`}
-              className={styles.card}
-            >
-              <div className={styles.cardBackground} style={{ backgroundImage: `url(${movie.backdrop})` }}></div>
-              <h2>{movie.title}</h2>
-              <div className={styles.cardInfo}>
-                <span>⭐ {movie.imdb_rating}</span>
-                <span>{movie.length}</span>
-              </div>
-              <p>{movie.overview}</p>
-            </a>
+            <MovieCard movie={movie} />
           ))}
-
         </div>
       </main>
 
