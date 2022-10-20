@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    wookieMoviesApiClient.getMovies(search).then(_ => _.json()).then(responseBody => setMovies(responseBody.movies))
+    wookieMoviesApiClient.getMovies(search).then(movieResponse => setMovies(movieResponse.movies))
   }, [search])
 
   useEffect(() => {

@@ -6,13 +6,20 @@ const createApiUrl = (searchQuery = '') =>
     : `${apiUrl}?q=${searchQuery}`
 
 export const WookieMoviesApiClient = ({ authorization = 'Bearer Wookie2021' } = {}) => {
-  const getMovies = (searchQuery = '') =>
-    fetch(createApiUrl(searchQuery), {
+  const authenticatedJsonFetch = (url: string) =>
+    fetch(url, {
       headers: { authorization },
-    })
+    }).then(_ => _.json())
+
+  const getMovies = (searchQuery = ''): Promise<MoviesResposne> =>
+    authenticatedJsonFetch(createApiUrl(searchQuery))
+
+  const getMovie = (movieSlug = ''): Promise<Movie> =>
+    authenticatedJsonFetch(`${apiUrl}/${movieSlug}`)
 
   return {
     getMovies,
+    getMovie,
   }
 }
 
@@ -30,4 +37,8 @@ export type Movie = Readonly<{
   released_on: string
   slug: string
   title: string
+}>
+
+export type MoviesResposne = Readonly<{
+  movies: readonly Movie[]
 }>
