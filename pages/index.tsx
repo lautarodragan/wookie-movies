@@ -1,18 +1,22 @@
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 
 import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
+import { groupMoviesByGenre } from '../src/group-movies-by-genre'
+
 import { Header } from '../components/header'
 import { MovieCard } from '../components/movie-card'
 import { Footer } from '../components/footer'
-import { useRouter } from 'next/router'
+import { MoviesByGenre } from '../components/movies-by-genre'
 
 const Home: NextPage = () => {
   const router = useRouter()
   const { q: searchQuery } = router.query
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
   const [movies, setMovies] = useState<readonly Movie[]>([])
+  const moviesByGenre = useMemo(() => searchQuery ? [] : groupMoviesByGenre(movies), [movies])
 
   useEffect(() => {
     wookieMoviesApiClient.getMovies(searchQuery as string).then(movieResponse => setMovies(movieResponse.movies))
@@ -23,11 +27,14 @@ const Home: NextPage = () => {
       <Header/>
 
       <Main>
-        <Grid>
-          {movies.map(movie => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))}
-        </Grid>
+        { !searchQuery && <MoviesByGenre moviesByGenre={moviesByGenre} />}
+        { searchQuery && (
+          <Grid>
+            {movies.map(movie => (
+              <MovieCard movie={movie} key={movie.id} />
+            ))}
+          </Grid>
+        )}
       </Main>
 
       <Footer/>
