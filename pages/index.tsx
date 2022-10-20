@@ -16,10 +16,6 @@ const Home: NextPage = () => {
     wookieMoviesApiClient.getMovies(search).then(movieResponse => setMovies(movieResponse.movies))
   }, [search])
 
-  useEffect(() => {
-    console.log('movies changed', movies)
-  }, [movies])
-
   return (
     <div>
       <Header onSearch={searchQuery => setSearch(searchQuery)} />

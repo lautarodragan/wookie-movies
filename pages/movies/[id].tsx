@@ -19,10 +19,6 @@ const Movie = () => {
     wookieMoviesApiClient.getMovie(id as string).then(movieResponse => setMovie(movieResponse))
   }, [id])
 
-  useEffect(() => {
-    console.log('movie changed', movie)
-  }, [movie])
-
   return (
     <div>
       <Header onSearch={() => {}} />
