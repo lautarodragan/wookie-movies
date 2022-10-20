@@ -6,19 +6,21 @@ import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 import { Header } from '../components/header'
 import { MovieCard } from '../components/movie-card'
 import { Footer } from '../components/footer'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
+  const router = useRouter()
+  const { q: searchQuery } = router.query
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
   const [movies, setMovies] = useState<readonly Movie[]>([])
-  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    wookieMoviesApiClient.getMovies(search).then(movieResponse => setMovies(movieResponse.movies))
-  }, [search])
+    wookieMoviesApiClient.getMovies(searchQuery as string).then(movieResponse => setMovies(movieResponse.movies))
+  }, [searchQuery])
 
   return (
     <div>
-      <Header onSearch={searchQuery => setSearch(searchQuery)} />
+      <Header/>
 
       <Main>
         <Grid>

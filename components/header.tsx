@@ -1,19 +1,18 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import styled from 'styled-components'
 
 import { DocumentHead } from './document-head'
 
-type HeaderProps = Readonly<{
-  onSearch: (searchQuery: string) => void
-}>
-
-export const Header = ({ onSearch }: HeaderProps) => {
+export const Header = () => {
+  const router = useRouter()
   const [search, setSearch] = useState('')
 
-  const onSearchInputChange = (value: string) => {
-    setSearch(value)
-    onSearch(value) // TODO: debounce, possibly redirect to a search-specific page
+  const onKeyDown = (key: string) => {
+    if (key === 'Enter') {
+      router.push(`/?q=${search}`)
+    }
   }
 
   return (
@@ -34,7 +33,8 @@ export const Header = ({ onSearch }: HeaderProps) => {
             type="text"
             placeholder="Search movies..."
             value={search}
-            onChange={e => onSearchInputChange(e.target.value)}
+            onChange={e => setSearch(e.target.value)}
+            onKeyDown={e => onKeyDown(e.key)}
           />
         </p>
       </StyledHeader>

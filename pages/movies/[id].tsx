@@ -21,7 +21,7 @@ const Movie = () => {
 
   return (
     <div>
-      <Header onSearch={() => {}} />
+      <Header/>
 
       <LetterBoxed>
         <StyledMovie>
