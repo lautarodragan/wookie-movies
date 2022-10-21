@@ -37,7 +37,7 @@ const Genre = styled.div`
   
   h3 {
     font-size: 2rem;
-    padding: 2rem;
+    padding: 2rem 4rem;
     color: white;
     background-color: #444;
   }
