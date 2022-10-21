@@ -71,14 +71,12 @@ const Genre = styled.div`
 const MovieList = styled.div`
   overflow: hidden;
   max-width: 100%;
-  scroll-snap-type: x mandatory;
   mask-image: linear-gradient(to left, #fff0 0, #fff3 50px, #fffa 100px, #ffff 150px);
   scroll-behavior: smooth;
   
   >div {
     display: flex;
     flex-direction: row;
-    scroll-snap-type: x mandatory;
   }
 `
 
