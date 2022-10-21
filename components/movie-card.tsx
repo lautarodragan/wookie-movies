@@ -12,7 +12,9 @@ export const MovieCard = ({ movie }: MovieCardProps) => (
   <Link href={`/movies/${movie.slug}`} passHref={true}>
     <MovieCardStyled>
       <MovieCardBackground style={{ backgroundImage: `url(${movie.backdrop})` }} />
-      <h2>{movie.title}</h2>
+      <div>
+        <h2>{movie.title}</h2>
+      </div>
       <MovieCardInfo>
         <span>⭐ {movie.imdb_rating}</span>
         <span>{movie.length}</span>
@@ -55,6 +57,9 @@ const MovieCardStyled = styled.a`
     font-size: 1.5rem;
     padding: 1.5rem;
     backdrop-filter: saturate(0.5) brightness(0.5);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   
   p {
