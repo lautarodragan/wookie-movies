@@ -34,7 +34,7 @@ const MovieListContainer = ({ movies }: MovieListContainerProps) => {
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <MovieListContainerStyled>
       <MovieList ref={ref}>
         <div>
           {movies.map(movie => (
@@ -43,9 +43,14 @@ const MovieListContainer = ({ movies }: MovieListContainerProps) => {
         </div>
       </MovieList>
       <NextButton onClick={onNext}>NEXT</NextButton>
-    </div>
+    </MovieListContainerStyled>
   )
 }
+
+const MovieListContainerStyled = styled.div`
+  display: flex;
+  align-items: center
+`
 
 const MoviesByGenreStyled = styled.main`
   min-height: 100vh;
