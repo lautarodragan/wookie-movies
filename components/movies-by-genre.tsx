@@ -1,28 +1,51 @@
+import { useRef } from 'react'
 import styled from 'styled-components'
 
 import { Movie } from '../src/wookie-movies-api-client'
 import { MovieCard } from './movie-card'
 
-type SearchResults = Readonly<{
-  moviesByGenre: readonly [genre: string, movies: readonly Movie[]][]
-}>
+interface MoviesByGenreProps {
+  readonly moviesByGenre: readonly [genre: string, movies: readonly Movie[]][]
+}
 
-export const MoviesByGenre = ({ moviesByGenre }: SearchResults) => (
-  <MoviesByGenreStyled>
-    { moviesByGenre.map(([genre, movies]) => (
-      <Genre>
-        <h3>{genre}</h3>
-        <MovieListContainer>
-          <div>
-            {movies.map(movie => (
-              <MovieCard movie={movie} key={movie.id} />
-            ))}
-          </div>
-        </MovieListContainer>
-      </Genre>
-    ))}
-  </MoviesByGenreStyled>
-)
+export const MoviesByGenre = ({ moviesByGenre }: MoviesByGenreProps) => {
+  return (
+    <MoviesByGenreStyled>
+      { moviesByGenre.map(([genre, movies]) => (
+        <Genre key={genre}>
+          <h3>{genre}</h3>
+          <MovieListContainer movies={movies} />
+        </Genre>
+      ))}
+    </MoviesByGenreStyled>
+  )
+}
+
+interface MovieListContainerProps {
+  readonly movies: readonly Movie[]
+}
+
+const MovieListContainer = ({ movies }: MovieListContainerProps) => {
+  const ref = useRef<any>(null)
+
+  const onNext = () => {
+    console.log(ref.current)
+    ref.current?.scrollBy(370, 0)
+  }
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <MovieList ref={ref}>
+        <div>
+          {movies.map(movie => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
+        </div>
+      </MovieList>
+      <NextButton onClick={onNext}>NEXT</NextButton>
+    </div>
+  )
+}
 
 const MoviesByGenreStyled = styled.main`
   min-height: 100vh;
@@ -45,13 +68,24 @@ const Genre = styled.div`
   }
 `
 
-const MovieListContainer = styled.div`
+const MovieList = styled.div`
   overflow: hidden;
   max-width: 100%;
+  scroll-snap-type: x mandatory;
+  mask-image: linear-gradient(to left, #fff0 0, #fff3 50px, #fffa 100px, #ffff 150px);
+  scroll-behavior: smooth;
   
   >div {
     display: flex;
     flex-direction: row;
+    scroll-snap-type: x mandatory;
   }
-  
+`
+
+const NextButton = styled.div`
+  margin-left: 1rem;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
 `
