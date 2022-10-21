@@ -5,10 +5,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
 import { groupMoviesByGenre } from '../src/group-movies-by-genre'
 
-import { Header } from '../components/header'
-import { Footer } from '../components/footer'
 import { MoviesByGenre } from '../components/movies-by-genre'
 import { SearchResults } from '../components/search-results'
+import { Layout } from '../components/layout'
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -22,12 +21,10 @@ const Home: NextPage = () => {
   }, [searchQuery])
 
   return (
-    <div>
-      <Header/>
+    <Layout>
       { !searchQuery && <MoviesByGenre moviesByGenre={moviesByGenre} />}
       { searchQuery && <SearchResults movies={movies} /> }
-      <Footer/>
-    </div>
+    </Layout>
   )
 }
 

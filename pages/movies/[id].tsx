@@ -2,9 +2,9 @@ import { useMemo } from 'react'
 import styled from 'styled-components'
 
 import { WookieMoviesApiClient } from '../../src/wookie-movies-api-client'
-import { Header } from '../../components/header'
 import { LetterBoxed } from '../../components/letter-boxing'
 import { GetServerSidePropsContext } from 'next'
+import { Layout } from '../../components/layout'
 
 const Movie = ({ movie }: any) => {
   const stars = useMemo(() => {
@@ -16,9 +16,7 @@ const Movie = ({ movie }: any) => {
   }, [movie])
 
   return (
-    <div>
-      <Header/>
-
+    <Layout>
       <LetterBoxed>
         <StyledMovie>
           <img src={movie?.poster} alt="Movie Poster"/>
@@ -34,7 +32,7 @@ const Movie = ({ movie }: any) => {
           </StyledDetails>
         </StyledMovie>
       </LetterBoxed>
-    </div>
+    </Layout>
   )
 }
 
