@@ -36,7 +36,8 @@ export const MovieListContainer = ({ movies }: MovieListContainerProps) => {
 
 const MovieListContainerStyled = styled.div`
   display: flex;
-  align-items: center
+  align-items: center;
+  padding: 0 2rem;
 `
 
 /** The visible portion of the movie list **/

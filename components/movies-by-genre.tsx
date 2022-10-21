@@ -33,10 +33,12 @@ const MoviesByGenreStyled = styled.main`
 const Genre = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  padding: 0 2rem;
+  width: 100%;
   
   h3 {
     font-size: 2rem;
+    padding: 2rem;
+    color: white;
+    background-color: #444;
   }
 `
