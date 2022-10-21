@@ -42,7 +42,7 @@ const MovieListContainer = ({ movies }: MovieListContainerProps) => {
           ))}
         </div>
       </MovieList>
-      <NextButton onClick={onNext}>NEXT</NextButton>
+      <NextButton onClick={onNext}>⇒</NextButton>
     </MovieListContainerStyled>
   )
 }
