@@ -12,6 +12,13 @@ const Movie = () => {
 
   const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
   const [movie, setMovie] = useState<Movie>()
+  const stars = useMemo(() => {
+    if (!movie)
+      return ''
+
+    const count = Math.round(movie.imdb_rating / 2) // could be Math.floor. Partial stars would be even better.
+    return '⭐'.repeat(count)
+  }, [movie])
 
   useEffect(() => {
     if (!id)
@@ -27,7 +34,10 @@ const Movie = () => {
         <StyledMovie>
           <img src={movie?.poster} alt="Movie Poster"/>
           <StyledDetails>
-            <h1>{movie?.title} ({movie?.imdb_rating})</h1>
+            <TitleAndRating>
+              <h1>{movie?.title} ({movie?.imdb_rating})</h1>
+              <span>{stars}</span>
+            </TitleAndRating>
             <p>{movie && (new Date(movie.released_on)).getFullYear()} | {movie?.length} | {movie?.director}</p>
             <p>{movie?.genres.join(', ')}</p>
             <p>Cast: {movie?.cast.join(', ')}</p>
@@ -47,9 +57,17 @@ const StyledMovie = styled.main`
 
 const StyledDetails = styled.div`
   padding: 0 3rem;
-  
+`
+
+const TitleAndRating = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 2rem 0;
+
   h1 {
-    margin: 0 0 2rem 0;
+    margin: 0;
     font-size: 2rem;
   }
 `
