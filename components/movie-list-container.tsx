@@ -12,12 +12,16 @@ export const MovieListContainer = ({ movies }: MovieListContainerProps) => {
   const ref = useRef<any>(null)
 
   const onNext = () => {
-    console.log(ref.current)
     ref.current?.scrollBy(370, 0)
+  }
+
+  const onPrevious = () => {
+    ref.current?.scrollBy(-370, 0)
   }
 
   return (
     <MovieListContainerStyled>
+      <ScrollButton direction="left" onClick={onPrevious}>⇐</ScrollButton>
       <MovieList ref={ref}>
         <div>
           {movies.map(movie => (
@@ -25,7 +29,7 @@ export const MovieListContainer = ({ movies }: MovieListContainerProps) => {
           ))}
         </div>
       </MovieList>
-      <NextButton onClick={onNext}>⇒</NextButton>
+      <ScrollButton direction="right" onClick={onNext}>⇒</ScrollButton>
     </MovieListContainerStyled>
   )
 }
@@ -47,8 +51,13 @@ const MovieList = styled.div`
   }
 `
 
-const NextButton = styled.div`
-  margin-left: 1rem;
+interface NextButtonProps {
+  readonly direction: 'left' | 'right'
+}
+
+const ScrollButton = styled.div<NextButtonProps>`
+  ${props => props.direction === 'left' ? 'margin-right' : 'margin-left'}: 1rem;
+  
   border: 1px solid black;
   padding: 1rem;
   border-radius: 5px;
