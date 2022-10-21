@@ -23,11 +23,11 @@ export const MovieListContainer = ({ movies }: MovieListContainerProps) => {
     <MovieListContainerStyled>
       <ScrollButton direction="left" onClick={onPrevious}>⇐</ScrollButton>
       <MovieList ref={ref}>
-        <div>
+        <MovieListFullSize>
           {movies.map(movie => (
             <MovieCard movie={movie} key={movie.id} />
           ))}
-        </div>
+        </MovieListFullSize>
       </MovieList>
       <ScrollButton direction="right" onClick={onNext}>⇒</ScrollButton>
     </MovieListContainerStyled>
@@ -39,16 +39,18 @@ const MovieListContainerStyled = styled.div`
   align-items: center
 `
 
+/** The visible portion of the movie list **/
 const MovieList = styled.div`
   overflow: hidden;
   max-width: 100%;
   mask-image: linear-gradient(to left, #fff0 0, #fff3 50px, #fffa 100px, #ffff 150px);
   scroll-behavior: smooth;
-  
-  >div {
-    display: flex;
-    flex-direction: row;
-  }
+`
+
+/** The actual, full size movie list, which overflows and may have a portion hidden **/
+const MovieListFullSize = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
 interface NextButtonProps {
