@@ -1,17 +1,12 @@
-import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import styled from 'styled-components'
 
-import { Movie, WookieMoviesApiClient } from '../../src/wookie-movies-api-client'
+import { WookieMoviesApiClient } from '../../src/wookie-movies-api-client'
 import { Header } from '../../components/header'
 import { LetterBoxed } from '../../components/letter-boxing'
+import { GetServerSidePropsContext } from 'next'
 
-const Movie = () => {
-  const router = useRouter()
-  const { id } = router.query
-
-  const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
-  const [movie, setMovie] = useState<Movie>()
+const Movie = ({ movie }: any) => {
   const stars = useMemo(() => {
     if (!movie)
       return ''
@@ -19,12 +14,6 @@ const Movie = () => {
     const count = Math.round(movie.imdb_rating / 2) // could be Math.floor. Partial stars would be even better.
     return '⭐'.repeat(count)
   }, [movie])
-
-  useEffect(() => {
-    if (!id)
-      return
-    wookieMoviesApiClient.getMovie(id as string).then(movieResponse => setMovie(movieResponse))
-  }, [id])
 
   return (
     <div>
@@ -48,6 +37,21 @@ const Movie = () => {
     </div>
   )
 }
+
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
+  const wookieMoviesApiClient = WookieMoviesApiClient()
+
+  // We type-guard query.id, since users can freely enter anything in the URL.
+  // This is the worst possible UX for this. We could attempt to "guess" id (pick first element),
+  // redirect to home or display a decent error message.
+  if (typeof query.id !== 'string')
+    throw new Error('id should be a string')
+
+  const movie = await wookieMoviesApiClient.getMovie(query.id)
+
+  return { props: { movie } }
+}
+
 
 const StyledMovie = styled.main`
   display: flex;
