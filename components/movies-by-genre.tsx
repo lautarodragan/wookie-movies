@@ -1,8 +1,7 @@
-import { useRef } from 'react'
 import styled from 'styled-components'
 
 import { Movie } from '../src/wookie-movies-api-client'
-import { MovieCard } from './movie-card'
+import { MovieListContainer } from './movie-list-container'
 
 interface MoviesByGenreProps {
   readonly moviesByGenre: readonly [genre: string, movies: readonly Movie[]][]
@@ -20,37 +19,6 @@ export const MoviesByGenre = ({ moviesByGenre }: MoviesByGenreProps) => {
     </MoviesByGenreStyled>
   )
 }
-
-interface MovieListContainerProps {
-  readonly movies: readonly Movie[]
-}
-
-const MovieListContainer = ({ movies }: MovieListContainerProps) => {
-  const ref = useRef<any>(null)
-
-  const onNext = () => {
-    console.log(ref.current)
-    ref.current?.scrollBy(370, 0)
-  }
-
-  return (
-    <MovieListContainerStyled>
-      <MovieList ref={ref}>
-        <div>
-          {movies.map(movie => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))}
-        </div>
-      </MovieList>
-      <NextButton onClick={onNext}>⇒</NextButton>
-    </MovieListContainerStyled>
-  )
-}
-
-const MovieListContainerStyled = styled.div`
-  display: flex;
-  align-items: center
-`
 
 const MoviesByGenreStyled = styled.main`
   min-height: 100vh;
@@ -71,24 +39,4 @@ const Genre = styled.div`
   h3 {
     font-size: 2rem;
   }
-`
-
-const MovieList = styled.div`
-  overflow: hidden;
-  max-width: 100%;
-  mask-image: linear-gradient(to left, #fff0 0, #fff3 50px, #fffa 100px, #ffff 150px);
-  scroll-behavior: smooth;
-  
-  >div {
-    display: flex;
-    flex-direction: row;
-  }
-`
-
-const NextButton = styled.div`
-  margin-left: 1rem;
-  border: 1px solid black;
-  padding: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
 `
