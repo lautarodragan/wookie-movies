@@ -4,7 +4,7 @@ Challenge solution by Lautaro Dragan
 
 ## Chosen Libraries and Frameworks
 
-### NextJS
+### Server Side Rendering and NextJS
 
 I usually argue against Server Side Rendering. Websites can usually be broken down into a public-facing landing page that rarely changes more than once a day, and a private page that is very dynamic but is seen only after sign in.
 
@@ -26,6 +26,20 @@ All of these reasons make SSR a big improvement in UX.
 So far this has all been an argument in favour of SSR, with no mention of NextJS.
 
 NextJS is, as far as I know, the most battle-tested SSR framework.
+
+### CSS-in-JS and Styled Components
+
+Mark Dalgleish covered several pros in an old-ish, 2017 article: [A Unified Styling Language
+](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660). A more recent article, by Sam Magura, [Why We're Breaking Up with CSS-in-JS](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b) does a great job of listing the pros and as well as a few cons of css-in-js.
+
+I pretty much agree with everything said in Mark's article, and pretty much everything said in Sam's, except I still feel the pros out-weight the cons.
+
+I have used both SCSS and Styled Components successfully in production environments, so I don't think there's a giant argument in favour of or against either, yet I currently choose Styled Components because:
+- Setting up Styled Components with NextJS [does require an extra step](https://nextjs.org/docs/advanced-features/compiler#styled-components), for example, where SASS is practically [supported out of the box](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support). But it's well documented and minimal.
+- When I still used SCSS, I switched to [CSS Modules](https://github.com/css-modules/css-modules) (with the [CSS Loader](https://www.npmjs.com/package/css-loader#modules)) to avoid the worst problems with specificity, but I still faced some from time to time. SCSS without CSS modules is just not an option for me. I never faced this problem at all with Styled Components.
+- SCSS will not change at runtime. This means better performance and easier debugging. But, in real life, I have never found performance and debugging to be a problem with Styled Components either, so this is, to a degree, a moot point.
+- I guess performance could be an issue with older/cheaper phones (yet I'd measure it before jumping to conclusions), but I don't think anyone would use a very dynamic page in a phone. If the website is complex enough, there's always a native app with better UX and UI. IMO only statically generated sites make sense in mobile browsers. Anything else justifies a PC, laptop or native app. 
+- **Developer experience with Styled Components is vastly superior**. A strong reason for this is colocation, but the benefits are many. Improved developer experience leads to fewer bugs, which in turn translates to happier customers and less money spent on engineering. 
 
 ## Challenge
 
