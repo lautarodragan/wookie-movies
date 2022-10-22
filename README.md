@@ -75,6 +75,19 @@ If you need a function that returns a component, there's a name for that kind of
 
 Provided by the challenge. Would not normally exist in a real-life repo.
 
+## Architecture
+
+I won't go into detail here, but just share some quick rules:
+- Immutability everywhere. Mutable state goes in databases such as Postgres and key-value stores such as Redis. Modern hardware easily deals with the slight performance hit, and the added value in readability and reduced surface for bugs is immeasurable. CPU-intensive applications such as games, image and video editors, etc., cannot afford this. CRUD applications can. There are very few exceptions to this rule, such as timers or keeping track of mouse coordinates, and usually live inside `ref.current`.
+- No classes. Pure functions and object factories.
+- Name object factories in PascalCase.
+- Inferred types are generally preferred over explicit return types. TypeScript does an awesome job at this, and breaking changes to return types will still be caught at compile-time since they will break at call sites. It's not a problem to explicitly write return types, but it's discouraged in most cases.
+- Try to keep everything small and succinct: components, functions, object factories. 
+- Sometimes, a new styled component makes sense. In other cases, adding a selector to an existing one will do the job just fine and reduce clutter. As a rule of thumb: is a class name is needed for the selector, a new styled component may be a better option. If semantic HTML suffices, just a selector should be enough. Not a strict rule unless we manage to deterministically defined it and cover all cases.
+- Whenever possible, code should read like prose. 
+- Choose easily-understood names over short names, but keep it as short as possible. Avoid ambiguous names such as "data". 
+- Avoid comments as much as possible. They are often a code smell — redundant or indicative of bad naming or code with too many responsibilities. Exceptions to this can be unexpected edge cases, behaviours or bugs in libraries/frameworks, non-obvious algorithms or business rules. Uncle Bob has an excellent writing on this in his book Clean Code.
+
 ## Chosen Libraries and Frameworks
 
 ### Server Side Rendering and NextJS
