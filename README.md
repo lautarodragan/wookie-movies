@@ -34,6 +34,43 @@ Global styles and constants go here. The challenge did not require much detail b
 
 Whether these should be globally available CSS variables or JS/TS exported constants that get interpolated into the styled components is up for debate. I haven't formed a strong opinion on this, yet. 
 
+### clients
+
+Object factories or collection of functions that allow interacting with HTTP APIs (what we usually call "REST" APIs, even though they hardly ever adhere to the REST standard).
+
+These should be business-agnostic, providing a one-to-one mapping of the endpoints offered by the API, with no client-side improvements or code specific to this application. As a rule of thumb, think of them as independent packages that could be published to NPM and consumed by anyone and anything.
+
+They should also provide interfaces for the requests and responses bodies, and take query/path arguments as function arguments.
+
+In an ideal world, all API owners should also own, develop, maintain and publish these.
+
+API clients should not be programmatically tested on their own, as they should contain no logic or business rules. Mocking the HTTP responses themselves with [msw](https://mswjs.io/) and testing the application should cover the testing of these clients. 
+
+#### Side Note
+
+Even though object factories are just functions, I choose to distinguish them from functions that return primitives or objects that only contain primitives (apply this rule recursively) (see [Tuples and Records](https://github.com/tc39/proposal-record-tuple) proposal) from ones that return objects that contain and expose functions, by naming them in PascalCase rather than camelCase, as one would do with classes. 
+
+I choose object factories over classes because classes add no value when using immutability but add a ton of boilerplate and verbosity, and invite the use of `this`, `bind`, `new`, inheritance and other monstrosities.
+
+For more in-depth information about this, Eric Elliott has written excellent articles on this topic, such as [JavaScript Factory Functions with ES6+
+](https://medium.com/javascript-scene/javascript-factory-functions-with-es6-4d224591a8b1).
+
+### pure
+
+Pure functions go here.
+
+They, generally, should be framework and library agnostic. In other words: no ReactJS at all here.
+
+These will generally be transformations on data (take an object or primitive(s) and return a different one) or algorithms (take a private key and return its matching public key, for example).
+
+This type of folder can be found in the wild with names such as `utils` or `helpers`. This was very popular back when Java was The Language™ and functional programming was not well known and even tabu. These names fail to carry significant meaning, and even degrade the code that lives inside these folders, hinting they are second-class-citizens in the codebase. 
+
+I don't love the name `pure` though, and would prefer asking the team involved with this application for name proposals. Maybe `pure-functions`, though more verbose, would be a better name.
+
+#### Side Note
+
+If you need a function that returns a component, there's a name for that kind of function: a component. It belongs under `components`, not here. Remember: functional components are just functions that return a ReactNode.
+
 ### Designs
 
 Provided by the challenge. Would not normally exist in a real-life repo.
