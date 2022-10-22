@@ -18,7 +18,7 @@ All ReactJS components that are not NextJS pages go here.
 
 It's currently flat, with no folders inside it. 
 
-In real applications I've always seen this folder organized in different ways, always with problems. I have never seen a "perfect" organization.
+In real applications I've always seen this folder organized in different ways, always with different pros and cons. I have never seen a "perfect" organization.
 
 Some considerations:
 - **_One component per file_ is a terrible rule, never to be used.** It adds friction to creating new components and incentivizes writing larger components. It's okay to place one component per file in some cases, several in the same file in others. This is a case-by-case decision — no rule can be enforced. 
