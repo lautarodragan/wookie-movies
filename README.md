@@ -2,6 +2,10 @@
 
 Challenge solution by Lautaro Dragan
 
+## How to Play
+
+Just `npm ci` and `npm run dev`. 
+
 ## Chosen Libraries and Frameworks
 
 ### Server Side Rendering and NextJS
