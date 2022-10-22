@@ -1,4 +1,4 @@
-import { Movie } from './wookie-movies-api-client'
+import { Movie } from '../clients/wookie-movies-api-client'
 
 export const groupMoviesByGenre = (movies: readonly Movie[]) => {
   const moviesByGenre = new Map<string, readonly Movie[]>()

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { MovieCard } from './movie-card'
-import { Movie } from '../src/wookie-movies-api-client'
+import { Movie } from '../clients/wookie-movies-api-client'
 
 interface SearchResultsProps {
   readonly movies: readonly Movie[]

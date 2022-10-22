@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import styled from 'styled-components'
 
-import { Movie } from '../src/wookie-movies-api-client'
+import { Movie } from '../clients/wookie-movies-api-client'
 
 type MovieCardProps = Readonly<{
   movie: Movie

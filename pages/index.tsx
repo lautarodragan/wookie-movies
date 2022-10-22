@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 
-import { Movie, WookieMoviesApiClient } from '../src/wookie-movies-api-client'
-import { groupMoviesByGenre } from '../src/group-movies-by-genre'
+import { Movie, WookieMoviesApiClient } from '../clients/wookie-movies-api-client'
+import { groupMoviesByGenre } from '../pure/group-movies-by-genre'
 
 import { MoviesByGenre } from '../components/movies-by-genre'
 import { SearchResults } from '../components/search-results'

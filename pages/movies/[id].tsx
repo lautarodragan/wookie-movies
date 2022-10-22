@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 
-import { WookieMoviesApiClient } from '../../src/wookie-movies-api-client'
+import { WookieMoviesApiClient } from '../../clients/wookie-movies-api-client'
 import { LetterBoxed } from '../../components/letter-boxing'
 import { GetServerSidePropsContext } from 'next'
 import { Layout } from '../../components/layout'
