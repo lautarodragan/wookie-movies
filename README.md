@@ -88,6 +88,49 @@ I won't go into detail here, but just share some quick rules:
 - Choose easily-understood names over short names, but keep it as short as possible. Avoid ambiguous names such as "data". 
 - Avoid comments as much as possible. They are often a code smell — redundant or indicative of bad naming or code with too many responsibilities. Exceptions to this can be unexpected edge cases, behaviours or bugs in libraries/frameworks, non-obvious algorithms or business rules. Uncle Bob has an excellent writing on this in his book Clean Code.
 
+## Testing
+
+### The Wild West
+
+Testing web applications is a complicated topic. Unlike REST APIs, which have basically been evolving since the times of mainframes, frontend is fairly new. 
+
+Very primitive UI patterns appeared in the 90s, evolved to a decent degree in the 2000s (Windows Forms with .NET was pretty good, for example). Websites have existed for a while, but "web applications" are fairly new. One of the first "browser applications" was Gmail, released in 2004. Still, JS was pretty slow (significantly slower than native languages) until Google introduced V8 in 2008. ES5 was born in 2009. Decent frameworks like BackboneJS and AngularJS were released in 2010. ReactJS, the first truly good frontend framework/library, appeared in 2013. `let`, `const` and arrow functions appeared around 2015.
+
+This means modern frontend applications have existed for less than 10 years.
+
+The landscape is still rapidly evolving. There is no single bullet-proof approach to testing SPAs. 
+
+### React's Official Recommendations
+
+ReactJS' docs have [a page dedicated to testing](https://reactjs.org/docs/testing.html). In it they recommend two frameworks: Jest and React Testing Library.
+
+### Enzyme and Shallow Rendering
+
+Even though this is not included among the official recommendations, Enzynme is a testing framework I liked and the only one I have in-depth experience with. I worked with it at Amazon. The whole team had a largely positive experience with it.
+
+I particularly enjoyed **shallow rendering**. Used correctly, it was a very powerful too. 
+
+Shallow rendering allows treating components as pure functions that take props and return a list or shallow tree of components, along with their props. We can then easily and cheaply write many cases that test variations on the input props and assert on the expected presence of children components and what props they are given.
+
+**Another significant advantage of testing with shallow rendering is speed.** Mounting a full React tree for each test is usually prohibitive, and sharing the tree between tests can lead to conflicts or race conditions if tests run in parallel. 
+
+State changes cannot be tested and shallow rendering is mocking all child components, and all of this runs in JSDom, not a headless browser, which is not the real environment users will use. We obviously need separate tools for these, but there's still great value in enzyme + shallow rendering.
+
+Unfortunately, Facebook stopped using shallow rendering in their tests and [dropped support for shallow rendering](https://github.com/facebook/react/issues/17321). Ownership and responsibility over this codebase was inherited by the Enzyme team, but Enzyme is mostly a team of one. One person can't possibly maintain both Enzyme and React's Shallow Renderer. The code base has only seen [six commits since March 2020](https://github.com/enzymejs/react-shallow-renderer/graphs/contributors?from=2020-03-22&to=2022-10-22&type=c).
+
+> I think it’s worth noting that if you can use a project like React Testing Library that doesn’t depend on React internals, it’s generally a good idea. At FB we’ve frozen Enzyme tests to stay on an old version of React that won’t be upgraded for this reason, and we banned using it in any new tests.
+> ~ Dan Abramov
+
+[Time to say goodbye - Enzyme.js](https://www.piotrstaniow.pl/goodbye-enzyme) is a good read that adds more context.
+
+Facebook itself seems to use shallow rendering in a different approach: [by mocking children components the tested component relies on](https://github.com/facebook/react/pull/16168#issuecomment-518344985).
+
+It's also worth mentioning that, although ReactJS docs still have [a page for the Shallow Renderer](https://reactjs.org/docs/shallow-renderer.html), this page is outdated. I haven't been able to find anything similar in [the new docs](https://beta.reactjs.org/).
+
+Enzyme can be used for full tree rendering, where no components are mocked, but I wanted to emphasize on shallow rendering.
+
+So, why mention all of this? Enzyme is pretty much dead, but I wanted to make an argument for **testing components with shallow rendering, regardless of the framework used**.
+
 ## Chosen Libraries and Frameworks
 
 ### Server Side Rendering and NextJS
