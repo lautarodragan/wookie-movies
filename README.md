@@ -221,6 +221,10 @@ There's some stuff I could not include in this project. To name a few:
 - "loading" placeholders / management
 - css for search results
 - proper test coverage
+- basic a11y: proper html roles / semantic html, aria labels, etc
+- mid a11y: testing with screen readers
+- advanced a11y: keyboard navigation, motion/color needs, etc
+- a design system  
 
 ## Challenge
 
