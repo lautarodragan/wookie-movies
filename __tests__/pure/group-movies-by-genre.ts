@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 
 import { groupMoviesByGenre } from '../../pure/group-movies-by-genre'
-import movies from './input.json'
+import movies from '../movies.json'
 import output from './output.json'
 
 describe('groupMoviesByGenre', () => {

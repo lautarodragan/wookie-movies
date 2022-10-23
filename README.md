@@ -87,8 +87,11 @@ I won't go into detail here, but just share some quick rules:
 - Whenever possible, code should read like prose. 
 - Choose easily-understood names over short names, but keep it as short as possible. Avoid ambiguous names such as "data". 
 - Avoid comments as much as possible. They are often a code smell — redundant or indicative of bad naming or code with too many responsibilities. Exceptions to this can be unexpected edge cases, behaviours or bugs in libraries/frameworks, non-obvious algorithms or business rules. Uncle Bob has an excellent writing on this in his book Clean Code.
+- Avoid default exports, unless strictly required by a framework
 
 ## Testing
+
+Tests live under `__tests__` to follow convention. 
 
 ### Testing Pure Functions
 
@@ -108,9 +111,11 @@ This means modern frontend applications have existed for less than 10 years.
 
 The landscape is still rapidly evolving. There is no single bullet-proof approach to testing SPAs. 
 
-### React's Official Recommendations
+### Official Recommendations
 
-ReactJS' docs have [a page dedicated to testing](https://reactjs.org/docs/testing.html). In it they recommend two frameworks: Jest and React Testing Library.
+ReactJS' docs have [a page dedicated to testing](https://reactjs.org/docs/testing.html). In it, they recommend two frameworks: Jest and React Testing Library.
+
+Next.JS [testing docs](https://nextjs.org/docs/testing) mention Cypress, Playwright, Jest and React Testing Library, and Vitest.
 
 ### Enzyme and Shallow Rendering
 
@@ -138,6 +143,20 @@ It's also worth mentioning that, although ReactJS docs still have [a page for th
 Enzyme can be used for full tree rendering, where no components are mocked, but I wanted to emphasize on shallow rendering.
 
 So, why mention all of this? Enzyme is pretty much dead, but I wanted to make an argument for **testing components with shallow rendering, regardless of the framework used**.
+
+### React Testing Library
+
+> Jest and React Testing Library are frequently used together for Unit Testing.
+> 
+> ~ NextJS docs
+
+
+> The primary purpose of React Testing Library is to increase confidence in your tests by testing your components in the way a user would use them.
+>
+> ~ RTL's docs
+
+This library is the only one to show up in both ReactJS' and Next.JS' recommendations. It was also highly recommended to me, and was authored by Kent C. Dodds, a well known and respected software architect in the frontend world.
+
 
 ## Chosen Libraries and Frameworks
 
