@@ -90,6 +90,14 @@ I won't go into detail here, but just share some quick rules:
 
 ## Testing
 
+### Testing Pure Functions
+
+This one is easy, and it's the only one that's easy. Pure functions can easily be tested with any testing framework. All you need to do is give it inputs and expect outputs. There are no side effects, no mutations, no DOM, no React. They could live in frontend or backend projects — it doesn't matter.
+
+It's common to name these _unit tests_, a catch-all we inherited from the age of Java. The idea is that we're testing a _unit_, but there's no clear definition of what a "unit" is a code base, let alone the whole industry.
+
+To avoid ambiguity and historical baggage, I call these _pure tests_. 
+
 ### The Wild West
 
 Testing web applications is a complicated topic. Unlike REST APIs, which have basically been evolving since the times of mainframes, frontend is fairly new. 
