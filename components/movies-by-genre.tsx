@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 
-import { Movie } from '../clients/wookie-movies-api-client'
+import { Movie, WookieMoviesApiClient } from '../clients/wookie-movies-api-client'
 import { MovieListContainer } from './movie-list-container'
+import { useEffect, useMemo, useState } from 'react'
+import { groupMoviesByGenre } from '../pure/group-movies-by-genre'
 
-interface MoviesByGenreProps {
-  readonly moviesByGenre: readonly [genre: string, movies: readonly Movie[]][]
-}
+export const MoviesByGenre = () => {
+  const wookieMoviesApiClient = useMemo(() => WookieMoviesApiClient(), [])
+  const [movies, setMovies] = useState<readonly Movie[]>([])
+  const moviesByGenre = useMemo(() => groupMoviesByGenre(movies), [movies])
 
-export const MoviesByGenre = ({ moviesByGenre }: MoviesByGenreProps) => {
+  useEffect(() => {
+    wookieMoviesApiClient.getMovies().then(movieResponse => setMovies(movieResponse.movies))
+  }, [])
+
   return (
     <MoviesByGenreStyled>
       { moviesByGenre.map(([genre, movies]) => (
