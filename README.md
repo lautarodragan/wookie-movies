@@ -144,7 +144,7 @@ Enzyme can be used for full tree rendering, where no components are mocked, but 
 
 So, why mention all of this? Enzyme is pretty much dead, but I wanted to make an argument for **testing components with shallow rendering, regardless of the framework used**.
 
-### React Testing Library
+### Unit Testing with React Testing Library
 
 > Jest and React Testing Library are frequently used together for Unit Testing.
 > 
@@ -157,6 +157,21 @@ So, why mention all of this? Enzyme is pretty much dead, but I wanted to make an
 
 This library is the only one to show up in both ReactJS' and Next.JS' recommendations. It was also highly recommended to me, and was authored by Kent C. Dodds, a well known and respected software architect in the frontend world.
 
+### E2E Testing with Cypress
+
+We need something that tests our code in a real browser. NextJS' and [ReactJS'](https://reactjs.org/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) docs suggest either [Cypress](https://www.cypress.io/) or [Playwright](https://playwright.dev/) for this.
+
+Both projects have roughly the same stars in GitHub, but Cypress has 4x the weekly downloads from npm and is exclusively focused on JS, while Playwright supports other languages. Both tools seem to be right for the job, but Cypress makes me more comfortable. 
+
+### API Mocking With MSW
+
+Mock Service Worker is a relatively new library that enables mocking HTTP calls both in front and backend. In the frontend it uses a service worker, which works like a charm. In NodeJS it hooks into the native modules, "mocking" internals. I've used it in the past year in NodeJS and found a few rough edge cases which made me question how production-ready it was. 
+
+It still has ways to go to reach a `1.0.0` version, but it's growing quickly and the development experience it offers is amazing. The most common alternative is running a mock server in docker, which is slower and more painful in general.
+
+In our test suite we'll use MSW in both the browser and  NodeJS, since we have tests that run against jsdom in node with RTL and real-browser ones with Cypress.
+
+There's a small risk in introducing this dependency, but I believe the risk is very low and completely worth it: it does not impact production code at all and, if we ever needed to, replacing it by a different solution would be straight-forward since most of the effort goes into writing the HTTP mocks regardless of the tool used. 
 
 ## Chosen Libraries and Frameworks
 
