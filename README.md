@@ -78,6 +78,7 @@ Provided by the challenge. Would not normally exist in a real-life repo.
 ## Architecture
 
 I won't go into detail here, but just share some quick rules:
+- Spirit of the law > letter of the law
 - Immutability everywhere. Mutable state goes in databases such as Postgres and key-value stores such as Redis. Modern hardware easily deals with the slight performance hit, and the added value in readability and reduced surface for bugs is immeasurable. CPU-intensive applications such as games, image and video editors, etc., cannot afford this. CRUD applications can. There are very few exceptions to this rule, such as timers or keeping track of mouse coordinates, and usually live inside `ref.current`.
 - No classes. Pure functions and object factories.
 - Name object factories in PascalCase.
@@ -215,6 +216,7 @@ I have used both SCSS and Styled Components successfully in production environme
 ## Next Steps
 
 There's some stuff I could not include in this project. To name a few:
+- cypress
 - commitlint
 - eslint
 - error handling and error boundaries
