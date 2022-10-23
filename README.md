@@ -159,7 +159,7 @@ This library is the only one to show up in both ReactJS' and Next.JS' recommenda
 
 ### E2E Testing with Cypress
 
-We need something that tests our code in a real browser. NextJS' and [ReactJS'](https://reactjs.org/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) docs suggest either [Cypress](https://www.cypress.io/) or [Playwright](https://playwright.dev/) for this.
+Testing against jsdom is fast, cheap, and catches many bugs. But we need something that tests our code in a real browser. [NextJS'](https://nextjs.org/docs/testing) and [ReactJS'](https://reactjs.org/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) docs suggest either [Cypress](https://www.cypress.io/) or [Playwright](https://playwright.dev/) for this.
 
 Both projects have roughly the same stars in GitHub, but Cypress has 4x the weekly downloads from npm and is exclusively focused on JS, while Playwright supports other languages. Both tools seem to be right for the job, but Cypress makes me more comfortable. 
 
