@@ -27,7 +27,7 @@ export interface Movie extends Readonly<{
   backdrop: string
   cast: readonly string[]
   classification: string
-  director: string
+  director: string | readonly string[]
   genres: readonly string[]
   id: string
   imdb_rating: number
