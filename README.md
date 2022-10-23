@@ -212,6 +212,16 @@ I have used both SCSS and Styled Components successfully in production environme
 - I guess performance could be an issue with older/cheaper phones (yet I'd measure it before jumping to conclusions), but I don't think anyone would use a very dynamic page in a phone. If the website is complex enough, there's always a native app with better UX and UI. IMO only statically generated sites make sense in mobile browsers. Anything else justifies a PC, laptop or native app. 
 - **Developer experience with Styled Components is vastly superior**. A strong reason for this is colocation, but the benefits are many. Improved developer experience leads to fewer bugs, which in turn translates to happier customers and less money spent on engineering. 
 
+## Next Steps
+
+There's some stuff I could not include in this project. To name a few:
+- commitlint
+- eslint
+- error handling and error boundaries
+- "loading" placeholders / management
+- css for search results
+- proper test coverage
+
 ## Challenge
 
 See [Challenge.md](./CHALLENGE.md).
