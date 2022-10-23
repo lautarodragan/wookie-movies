@@ -133,7 +133,7 @@ Unfortunately, Facebook stopped using shallow rendering in their tests and [drop
 
 Facebook itself seems to use shallow rendering in a different approach: [by mocking children components the tested component relies on](https://github.com/facebook/react/pull/16168#issuecomment-518344985).
 
-It's also worth mentioning that, although ReactJS docs still have [a page for the Shallow Renderer](https://reactjs.org/docs/shallow-renderer.html), this page is outdated. I haven't been able to find anything similar in [the new docs](https://beta.reactjs.org/).
+It's also worth mentioning that, although ReactJS docs still have [a page for the Shallow Renderer](https://reactjs.org/docs/shallow-renderer.html), this page is outdated. I haven't been able to find anything similar in [the new docs](https://beta.reactjs.org/). Enzyme's [docs for shallow rendering](https://enzymejs.github.io/enzyme/docs/api/shallow.html) are clearly outdated, too, referencing class-components lifecycle methods. 
 
 Enzyme can be used for full tree rendering, where no components are mocked, but I wanted to emphasize on shallow rendering.
 
